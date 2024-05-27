@@ -9,12 +9,16 @@ const LoginContainer = styled.View`
     background-color: #171717;
 `;
 
+
 const BackgroundNilsinho = styled.ImageBackground`
     display: flex;
     flex: 1;
     margin-top: 0px;
     margin-left: 0px;
 `;
+
+// TESTE
+const teste = 'banana';
 
 export function LoginPage() {
     return (
