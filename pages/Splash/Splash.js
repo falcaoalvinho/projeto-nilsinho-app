@@ -1,7 +1,6 @@
 import styled from 'styled-components/native';
 import FailledConnectionIcon from '../../assets/images/FailledConnectionIcon.png';
 
-
 const SplashContainer = styled.View`
     display: flex;
     flex: 1;
@@ -14,6 +13,7 @@ const SplashContainer = styled.View`
 const SplashContent = styled.View`
     background-color: #212121;
     border-radius: 100px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 20px 1px;
     display: flex;
     flex: 1;
     align-itens: center;
