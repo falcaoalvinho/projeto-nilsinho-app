@@ -16,6 +16,8 @@ const BackgroundNilsinho = styled.ImageBackground`
     margin-left: 0px;
 `;
 
+const nilson = "AU";
+
 export function LoginPage() {
     return (
         <LoginContainer>
