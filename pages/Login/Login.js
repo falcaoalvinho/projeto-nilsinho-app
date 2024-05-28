@@ -19,6 +19,7 @@ const LoginContainer = styled.View`
     background-color: #171717;
 `;
 
+
 const BackgroundNilsinho = styled.ImageBackground`
     display: flex;
     flex: 1;
@@ -132,6 +133,9 @@ const MediaLoginIcon = styled.Image`
     height: 35px;
     width: 35px;
 `;
+
+// TESTE
+const teste = 'banana';
 
 export function LoginPage() {
     return (
