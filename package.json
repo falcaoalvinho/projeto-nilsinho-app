@@ -1,5 +1,5 @@
 {
-  "name": "aprendendo_style",
+  "name": "projeto-nilsinho-app",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
@@ -14,7 +14,9 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-native": "0.73.6",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.11",
+    "typescript": "~5.3.3",
+    "@types/react": "~18.2.79"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
