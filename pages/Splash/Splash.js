@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import FailledConnectionIcon from '../../assets/images/FailledConnectionIcon.png';
+import FailledConnectionIcon from '../../assets/images/Splash/FailledConnectionIcon.png';
 
 const SplashContainer = styled.View`
     display: flex;
