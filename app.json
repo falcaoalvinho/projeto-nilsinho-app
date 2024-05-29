@@ -1,16 +1,11 @@
 {
   "expo": {
-    "name": "Aprendendo_style",
-    "slug": "Aprendendo_style",
+    "name": "projeto-nilsinho-app",
+    "slug": "projeto-nilsinho-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
     "assetBundlePatterns": [
       "**/*"
     ],
