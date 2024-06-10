@@ -135,12 +135,9 @@ export function LoginPage() {
             window.alert('Suscessfull login detected')
         }
         else{
-            console.log(InputUser)
-            console.log(InputPassword)
             window.alert('Incorrect credentials.')
         }
     }
-
     return (
             <LoginContainer>
                 <BackgroundNilsinho source={Nilsinho}>
