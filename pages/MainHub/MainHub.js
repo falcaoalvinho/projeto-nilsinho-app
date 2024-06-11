@@ -175,7 +175,7 @@ const ShowWeatherTemperature = styled.Text`
     background-color: #393939;
 `;
 
-function ShowWeather({CurrentLocal, temperature}){
+function ShowWeather({CurrentLocal, temperature, navigation}){
     return(
         <ShowWeatherContainer>
             <NilsinhoBackground source={NilsinhoImage}>

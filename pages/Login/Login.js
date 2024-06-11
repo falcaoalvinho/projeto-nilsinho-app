@@ -121,7 +121,7 @@ const MediaLoginIcon = styled.Image`
     width: 35px;
 `;
 
-export function LoginPage() {
+export function LoginPage({navigation}) {
 
     var[InputUser, SetUserValue] = useState('');
     var[InputPassword, SetPasswordValue] = useState('');
@@ -132,7 +132,7 @@ export function LoginPage() {
 
     function CallLogIn() {
         if(InputUser == 'root' && InputPassword == 'root' ) {
-            window.alert('Suscessfull login detected')
+            navigation.navigate('MainHub');
         }
         else{
             window.alert('Incorrect credentials.')
