@@ -1,5 +1,8 @@
 import styled from 'styled-components/native';
+import NetInfo from '@react-native-community/netinfo';
+import { useEffect, useState } from 'react';
 import FailledConnectionIcon from '../../assets/images/Splash/FailledConnectionIcon.png';
+import SuscessfullConectionIcon from '../../assets/images/Splash/SuscessfullConectionIcon.png';
 
 const SplashContainer = styled.View`
     display: flex;
@@ -13,7 +16,6 @@ const SplashContainer = styled.View`
 const SplashContent = styled.View`
     background-color: #212121;
     border-radius: 100px;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 20px 1px;
     display: flex;
     flex: 1;
     align-itens: center;
@@ -36,13 +38,43 @@ const Medium20Font = styled.Text`
     text-align: center;
 `;
 
-export function SplashPage() {
+export function SplashPage({navigation}) {
+        const [isConnected, setIsConnected] = useState(false);
+        
+        useEffect(() => {
+          const unsubscribe = NetInfo.addEventListener(state => {
+            setIsConnected(state.isConnected);
+          });
+      
+          NetInfo.fetch().then(state => {
+            setIsConnected(state.isConnected);
+          });
+      
+          return () => {
+            unsubscribe();
+            };
+            }, []);
+            
+    setTimeout(() =>{
+        if(isConnected == true)
+            navigation.navigate('Login')
+    }, 5000)
+
     return (
         <SplashContainer>
-            <SplashContent>
-                <SplashIcon source={FailledConnectionIcon}/>
-                <Medium20Font>A conexão não pode ser estabelecida.</Medium20Font>
-            </SplashContent>
+                {isConnected ? 
+                (
+                    <SplashContent>
+                        <SplashIcon source={SuscessfullConectionIcon}/>
+                        <Medium20Font>A conexão pode ser estabelecida.</Medium20Font>
+                    </SplashContent>
+                ): 
+                (   
+                    <SplashContent>
+                        <SplashIcon source={FailledConnectionIcon}/>
+                        <Medium20Font>A conexão não pode ser estabelecida.</Medium20Font>
+                    </SplashContent>
+                )}
         </SplashContainer>
     )
 }

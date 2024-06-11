@@ -1,15 +1,23 @@
 import styled from 'styled-components/native';
+import {StyleSheet} from 'react-native';
 import Nilsinho from '../../assets/images/Login/BackgroundImage.png';
 import LogoIcon from '../../assets/images/Login/Logo.png'
 import GoogleLogo from '../../assets/images/Login/GoogleLogo.png'
 import AppleLogo from '../../assets/images/Login/AppleLogo.png'
 import { TouchableOpacity, TextInput } from 'react-native';
+import { useState } from 'react';
 
-const BoxShadowProps = ['rgba(0, 0, 0, 0.4)', { width: 0, height: 0 }]
-
-function CallTest(){
-    window.alert("Event Call suceded!");
-}
+const styles = StyleSheet.create({
+    baseInput: {
+    marginTop: 30,
+    paddingVertical: 20,
+    paddingHorizontal: 15,
+    borderRadius: 20,
+    fontSize: 16,
+    color: '#D9D9D9',
+    backgroundColor: '#4E4E4E',
+    }
+});
 
 const LoginContainer = styled.View`
     display: flex;
@@ -18,7 +26,6 @@ const LoginContainer = styled.View`
     justify-content: center;
     background-color: #171717;
 `;
-
 
 const BackgroundNilsinho = styled.ImageBackground`
     display: flex;
@@ -34,30 +41,11 @@ const AppLogo = styled.Image`
 `;
 
 const InputsContainer = styled.View`
-    flex: 1;
+    display: block;
     align-itens: center;
     justify-content: center;
-    margin-bottom: -80px;
+    margin-top: auto;
 `;
-
-function DataInput(proprieties){
-    const BaseInput = styled.TextInput`
-        margin-top: 30px;
-        padding: 20px 15px;
-        border-radius: 20px;
-        font-size: 16px;
-        font-weight: 400;
-        color: #D9D9D9;
-        background-color: #4E4E4E;
-    `;
-    return (
-        <BaseInput
-            placeholder={proprieties.placeholder}
-            placeholderTextColor='#D9D9D9'
-            secureTextEntry={proprieties.secureTextEntry}
-        />
-    )
-}
 
 const Regular14D9 = styled.Text`
     margin: 15px;
@@ -66,10 +54,10 @@ const Regular14D9 = styled.Text`
     color: #D9D9D9;
 `
 const Regular14Green = styled.Text`
-margin: 15px;
-font-size: 14px;
-font-weight: 400;
-color: #00AD1C;
+    margin: 15px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #00AD1C;
 `;
 
 const Regular16D9 = styled.Text`
@@ -96,7 +84,6 @@ function BaseButton(proprieties) {
         padding:    15px;
         border-radius: 40px;
         font-size: 14px;
-        font-weight: 700;
         color: #fff;
         background-color: #00AD1C;
     `;
@@ -134,41 +121,55 @@ const MediaLoginIcon = styled.Image`
     width: 35px;
 `;
 
-// TESTE
-const teste = 'banana';
+export function LoginPage({navigation}) {
 
-export function LoginPage() {
+    var[InputUser, SetUserValue] = useState('');
+    var[InputPassword, SetPasswordValue] = useState('');
+
+    function CallSignIn(){
+        window.alert(`At the present moment, the aplication isn't connect to a database.`);
+    }
+
+    function CallLogIn() {
+        if(InputUser == 'root' && InputPassword == 'root' ) {
+            navigation.navigate('MainHub');
+        }
+        else{
+            window.alert('Incorrect credentials.')
+        }
+    }
     return (
-        <LoginContainer>
-            <BackgroundNilsinho source={Nilsinho}>
-                <AppLogo source={LogoIcon}/>
-                <InputsContainer>
-                    <DataInput placeholder='Login de Usuário'/>
-                    <DataInput placeholder='Senha' secureTextEntry={true}/>
-                    <Regular14D9>Esqueceu a senha? <Regular14Green>Clique aqui!</Regular14Green></Regular14D9>
-                    
-                    <ButtonsContainer>
-                        <BaseButton onPress={() => {CallTest()}} text='Cadastrar'/>
-                        <BaseButton onPress={() => {CallTest()} } text='Entrar'/>
-                    </ButtonsContainer>
-                    
-                    <TextAndLines>
-                        <VerticalLineDetail/>
-                        <Regular14D9>ou</Regular14D9>
-                        <VerticalLineDetail/>
-                    </TextAndLines>
+            <LoginContainer>
+                <BackgroundNilsinho source={Nilsinho}>
+                    <AppLogo source={LogoIcon}/>
+                    <InputsContainer>
+                        <TextInput placeholder='Login de Usuário' placeholderTextColor='#D9D9D9' onChangeText={event => {SetUserValue(event)}} style={styles.baseInput}/>
+                        <TextInput placeholder='Senha' placeholderTextColor='#D9D9D9' secureTextEntry={true} onChangeText={event => {SetPasswordValue(event)}} style={styles.baseInput}/>
+                        <Regular14D9>Esqueceu a senha? <Regular14Green>Clique aqui!</Regular14Green></Regular14D9>
+                        
+                        <ButtonsContainer>
+                            <BaseButton onPress={() => {CallSignIn()}} text='Cadastrar'/>
+                            <BaseButton onPress={() => {CallLogIn()} } text='Entrar'/>
+                        </ButtonsContainer>
+                        
+                        <TextAndLines>
+                            <VerticalLineDetail/>
+                            <Regular14D9>ou</Regular14D9>
+                            <VerticalLineDetail/>
+                        </TextAndLines>
 
-                    <SocialMediaLogin>
-                        <MediaLoginIcon source={GoogleLogo}/>
-                        <Regular16D9>Entrar com o Google</Regular16D9>
-                    </SocialMediaLogin>
+                        <SocialMediaLogin>
+                            <MediaLoginIcon source={GoogleLogo}/>
+                            <Regular16D9>Entrar com o Google</Regular16D9>
+                        </SocialMediaLogin>
 
-                    <SocialMediaLogin>
-                        <MediaLoginIcon source={AppleLogo}/>
-                        <Regular16D9>Entrar com a Apple</Regular16D9>
-                    </SocialMediaLogin>
-                </InputsContainer>
-            </BackgroundNilsinho>
-        </LoginContainer>
-    );
-}
+                        <SocialMediaLogin>
+                            <MediaLoginIcon source={AppleLogo}/>
+                            <Regular16D9>Entrar com a Apple</Regular16D9>
+                        </SocialMediaLogin>
+                    </InputsContainer>
+                </BackgroundNilsinho>
+            </LoginContainer>
+        );
+    }
+
