@@ -54,10 +54,10 @@ const Regular14D9 = styled.Text`
     color: #D9D9D9;
 `
 const Regular14Green = styled.Text`
-margin: 15px;
-font-size: 14px;
-font-weight: 400;
-color: #00AD1C;
+    margin: 15px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #00AD1C;
 `;
 
 const Regular16D9 = styled.Text`

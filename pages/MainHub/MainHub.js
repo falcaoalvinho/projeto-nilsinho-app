@@ -1,9 +1,11 @@
 import { Button, ScrollView, TouchableOpacity, Text, View, TextInput, Image } from "react-native";
 import styled from "styled-components/native";
+import { useState, useEffect } from "react";
+
 import HamburguerIcon from '../../assets/images/MainHub/HamburguerMenu.png'
 import SearchIcon from '../../assets/images/MainHub/SearchIcon.png'
 import RemoveIcon from '../../assets/images/MainHub/Button.png'
-import { useState } from "react";
+import NilsinhoImage from '../../assets/images/MainHub/SunnyImage.png'
 
 function ShowMenu() {
     window.alert("ShowMenu has been called sucessfully!.")
@@ -78,7 +80,6 @@ function ColoredDetail(params){
 }
 
 export const LocalItemText = styled.Text`
-    font-family: 'Montserrat';
     font-weight: bold;
     font-size: 25px;
     color: #fff;
@@ -115,7 +116,6 @@ export function LocalInput({onPress, onChange}) {
         }}>
             <TextInput 
                 style={{
-                    fontFamily: 'Montserrat',
                     fontSize: 20,
                     color: '#d9d9d9'
                     }}
@@ -130,6 +130,62 @@ export function LocalInput({onPress, onChange}) {
                 />
             </TouchableOpacity>
         </View>
+    )
+}
+
+const ShowWeatherContainer = styled.View`
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+`;
+
+const NilsinhoBackground = styled.ImageBackground`
+    padding: 30px 30px 0px 30px;
+    align-items: flex-start;
+    justify-content: flex-end;
+    height: 322px;
+    width: 370px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+`;
+
+const ShowWeatherTextContainer = styled.View`
+    flex-direction: row;
+    padding: 10px 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: #4e4e4e;
+`;
+
+const ShowWeatherLocal = styled.Text`
+    color: #fff;
+    font-size: 30px;
+    font-weight: 800;
+`;
+
+const ShowWeatherTemperature = styled.Text`
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    color: #fff;
+    font-size: 50px;
+    font-weight: 800;
+    text-decoration-line: underline;
+    padding: 15px;
+    background-color: #393939;
+`;
+
+function ShowWeather({CurrentLocal, temperature}){
+    return(
+        <ShowWeatherContainer>
+            <NilsinhoBackground source={NilsinhoImage}>
+                <ShowWeatherTemperature>{temperature}</ShowWeatherTemperature>
+            </NilsinhoBackground>
+            <ShowWeatherTextContainer>
+                <ColoredDetail color1='#909090' color2='#d9d9d9'/>
+                <ShowWeatherLocal><ColoredDetail color1='#909090' color2='#d9d9d9'/>{CurrentLocal}</ShowWeatherLocal>
+            </ShowWeatherTextContainer>
+        </ShowWeatherContainer>
     )
 }
 
@@ -167,7 +223,11 @@ export function MainHubPage() {
             setWeather(json.weather[0].description);
     
         })
-      }    
+      }
+      
+      useEffect(() => {
+        selectCurrentLocal(CurrentLocal);
+      }, [CurrentLocal]);
 
     return (
         <MainHubContainer>
@@ -176,6 +236,7 @@ export function MainHubPage() {
             </MainHubHeader>
         <LocalsScrowView>
             <LocalInput onChange={event => {setInput(event)}} onPress={setLocalHandler}/>
+            <ShowWeather CurrentLocal={CurrentLocal} temperature={temperature}/>
             {
                 Locals.map((Local, index) =>{
                     return(
